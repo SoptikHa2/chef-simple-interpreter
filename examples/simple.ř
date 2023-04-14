@@ -1,0 +1,14 @@
+abs <- fun (a) {
+    if a < 0
+        result <- -a
+    else
+        result <- a
+};
+
+foo <- abs(4);
+bar <- abs(8);
+baz <- abs(-16);
+
+println(foo);
+println(bar);
+println(baz);

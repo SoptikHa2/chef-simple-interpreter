@@ -3,7 +3,7 @@
 #include <exception>
 
 #include "Interpreter.h"
-#include "RuleIndices.cpp"
+#include "Řstdlib.hpp"
 
 using namespace std;
 
@@ -101,45 +101,62 @@ any Interpreter::visitOpComparsion(ŘParser::OpComparsionContext *ctx) {
     auto left = any_cast<int>(visit(ctx->left));
     auto right = any_cast<int>(visit(ctx->right));
     auto op = ctx->op->getText();
-    if (op == "==") return left == right;
-    if (op == ">") return left > right;
-    if (op == "<") return left < right;
+    if (op == "==") return (int)(left == right);
+    if (op == ">") return (int)(left > right);
+    if (op == "<") return (int)(left < right);
     throw runtime_error("Unknown operator: " + op);
 }
 
 any Interpreter::visitFunctionCall(ŘParser::FunctionCallContext *ctx) {
     auto funName = ctx->fun->getText();
-    if (state.functions.count(funName)) {
+
+    size_t targetArgSize;
+    function<int(vector<int>)> funcToCall;
+
+    // Construct the function to call
+    if (řstd::_vifunc.count(funName)) {
+        targetArgSize = 1;
+        funcToCall = [&](vector<int> args) {
+            řstd::_vifunc[funName](args[0]);
+            return 0;
+        };
+    } else if (řstd::_ivfunc.count(funName)) {
+        targetArgSize = 0;
+        funcToCall = [&](auto _) {
+            return řstd::_ivfunc[funName]();
+        };
+    } else if (state.functions.count(funName)) {
         auto function = state.functions[funName];
-        auto args = any_cast<vector<int>>(visitArglist(ctx->args));
-
-        // Make sure there are enough arguments
-        if (args.size() != function.params.size()) {
-            throw runtime_error("Function " + funName + " called with incorrect number of parameters.");
-        }
-
-        // Make backup of current context, will restore it after return
-        auto backupState = state;
-
-        // Add arguments to context
-        int argId = 0;
-        for(const auto & param : function.params) {
-            state.variables[param] = args[argId++];
-        }
-
-        // Call the function
-        ŘBaseVisitor::visitBlock(state.functions[funName].body);
-
-        // Save return value
-        auto retVal = state.variables["return"];
-
-        // Restore backup
-        state = backupState;
-
-        return retVal;
+        targetArgSize = function.params.size();
+        funcToCall = [=](vector<int> args) {
+            // Make backup of current context, will restore it after return
+            auto backupState = state;
+            // Add arguments to context
+            int argId = 0;
+            for(const auto & param : function.params) {
+                state.variables[param] = args[argId++];
+            }
+            // Call the function
+            ŘBaseVisitor::visitBlock(state.functions[funName].body);
+            // Save return value
+            auto retVal = state.variables["result"];
+            // Restore backup
+            state = backupState;
+            return retVal;
+        };
     } else {
         throw runtime_error("Unknown function name: " + funName);
     }
+
+    // Call the constructed function
+
+    // Make sure there are enough arguments
+    auto args = any_cast<vector<int>>(visitArglist(ctx->args));
+    if (args.size() != targetArgSize) {
+        throw runtime_error("Function " + funName + " called with incorrect number of parameters.");
+    }
+
+    return funcToCall(args);
 }
 
 any Interpreter::visitOpComputation(ŘParser::OpComputationContext *ctx) {
@@ -154,9 +171,12 @@ any Interpreter::visitOpComputation(ŘParser::OpComputationContext *ctx) {
     throw runtime_error("Unknown operator: " + op);
 }
 
-any Interpreter::visitOpNegation(ŘParser::OpNegationContext *ctx) {
+any Interpreter::visitOpUnary(ŘParser::OpUnaryContext *ctx) {
     auto expr = any_cast<int>(visit(ctx->e));
-    return !expr;
+    auto op = ctx->op->getText();
+    if (op == "!") return !expr;
+    if (op == "-") return -expr;
+    throw runtime_error("Unknown operator: " + op);
 }
 
 ostream &operator<<(ostream &os, const Interpreter &interpreter) {

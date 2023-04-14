@@ -30,7 +30,7 @@ public:
 
     std::any visitOpComputation(ŘParser::OpComputationContext *ctx) override;
 
-    std::any visitOpNegation(ŘParser::OpNegationContext *ctx) override;
+    std::any visitOpUnary(ŘParser::OpUnaryContext *ctx) override;
 
     friend std::ostream &operator<<(std::ostream &os, const Interpreter &interpreter);
 

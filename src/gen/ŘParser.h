@@ -188,6 +188,17 @@ public:
    
   };
 
+  class  OpUnaryContext : public ExprContext {
+  public:
+    OpUnaryContext(ExprContext *ctx);
+
+    antlr4::Token *op = nullptr;
+    ŘParser::ExprContext *e = nullptr;
+    ExprContext *expr();
+
+    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
+  };
+
   class  VariableReadContext : public ExprContext {
   public:
     VariableReadContext(ExprContext *ctx);
@@ -234,16 +245,6 @@ public:
   class  OpParensContext : public ExprContext {
   public:
     OpParensContext(ExprContext *ctx);
-
-    ŘParser::ExprContext *e = nullptr;
-    ExprContext *expr();
-
-    virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
-  };
-
-  class  OpNegationContext : public ExprContext {
-  public:
-    OpNegationContext(ExprContext *ctx);
 
     ŘParser::ExprContext *e = nullptr;
     ExprContext *expr();

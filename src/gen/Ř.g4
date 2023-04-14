@@ -12,9 +12,9 @@ stmtlist:   stmt (';' stmtlist)* ';'?
 
 stmt:   ID '<-' expr # VariableAssignment
     |   ID '<-' func # FunctionDefinition
-    |   'if' '(' cond=expr ')' body=block # IfCondition
-    |   'if' '(' cond=expr ')' truebody=block 'else' falsebody=block # IfElseCondition
-    |   'while' '(' cond=expr ')' body=block # WhileLoop
+    |   'if' cond=expr body=block # IfCondition
+    |   'if' cond=expr truebody=block 'else' falsebody=block # IfElseCondition
+    |   'while' cond=expr body=block # WhileLoop
     |   expr # Expression
     ;
 
@@ -24,7 +24,7 @@ expr:   literal # Lit
     |   left=expr op=('*'|'/') right=expr # OpComputation
     |   left=expr op=('+'|'-') right=expr # OpComputation
     |   left=expr op=('=='|'>'|'<') right=expr # OpComparsion
-    |   '!' e=expr # OpNegation
+    |   op=('!'|'-') e=expr # OpUnary
     |   '(' e=expr ')' # OpParens
     ;
 
@@ -40,7 +40,7 @@ paramlist:  ID (',' paramlist)*
 
 literal:    INTLIT;
 
-INTLIT: [0-9]+;
+INTLIT: [-]?[0-9]+;
 
 ID: [a-zA-Z_][a-zA-Z0-9_]*;
 

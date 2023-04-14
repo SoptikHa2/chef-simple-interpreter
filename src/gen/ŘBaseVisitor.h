@@ -51,6 +51,10 @@ public:
     return visitChildren(ctx);
   }
 
+  virtual std::any visitOpUnary(ŘParser::OpUnaryContext *ctx) override {
+    return visitChildren(ctx);
+  }
+
   virtual std::any visitVariableRead(ŘParser::VariableReadContext *ctx) override {
     return visitChildren(ctx);
   }
@@ -68,10 +72,6 @@ public:
   }
 
   virtual std::any visitOpParens(ŘParser::OpParensContext *ctx) override {
-    return visitChildren(ctx);
-  }
-
-  virtual std::any visitOpNegation(ŘParser::OpNegationContext *ctx) override {
     return visitChildren(ctx);
   }
 

@@ -8,13 +8,16 @@
 
 using namespace std;
 
-// TODO: Load from file
-std::string program = "foo <- fun () return <- 18; bar <- foo();";
+int main(int argc, char ** argv) {
+    if (argc != 2) {
+        cout << "Usage: ./chef_simple_interpreter <file>" << endl;
+        return 1;
+    }
 
+    ifstream input_stream((string(argv[1])));
 
-int main() {
     // Convert the file into ANTLR's format.
-    antlr4::ANTLRInputStream stream (program);
+    antlr4::ANTLRInputStream stream (input_stream);
 
     // Give the input to the lexer.
     ŘLexer lexer(&stream);
@@ -31,6 +34,7 @@ int main() {
     Interpreter interpreter;
     interpreter.visitProg(tree);
 
-    cout << interpreter << endl;
+    //cout << interpreter << endl;
+
     return 0;
 }

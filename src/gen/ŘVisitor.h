@@ -37,6 +37,8 @@ public:
 
     virtual std::any visitExpression(ŘParser::ExpressionContext *context) = 0;
 
+    virtual std::any visitOpUnary(ŘParser::OpUnaryContext *context) = 0;
+
     virtual std::any visitVariableRead(ŘParser::VariableReadContext *context) = 0;
 
     virtual std::any visitLit(ŘParser::LitContext *context) = 0;
@@ -46,8 +48,6 @@ public:
     virtual std::any visitFunctionCall(ŘParser::FunctionCallContext *context) = 0;
 
     virtual std::any visitOpParens(ŘParser::OpParensContext *context) = 0;
-
-    virtual std::any visitOpNegation(ŘParser::OpNegationContext *context) = 0;
 
     virtual std::any visitOpComputation(ŘParser::OpComputationContext *context) = 0;
 
