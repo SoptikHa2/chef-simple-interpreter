@@ -4,7 +4,7 @@
 #include <functional>
 #include <unordered_map>
 
-namespace řstd {
+namespace rrstd {
     void printChar(int expr) {
         unsigned char c = (unsigned char)expr;
         std::cout << c;

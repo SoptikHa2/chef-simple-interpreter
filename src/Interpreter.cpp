@@ -4,10 +4,19 @@
 
 #include "Interpreter.h"
 #include "RRstdlib.hpp"
+#include "S2ETools.hpp"
 
 using namespace std;
 
-Interpreter::Interpreter(bool symbexec_enabled) : symbexec_enabled(symbexec_enabled) {}
+Interpreter::Interpreter(bool symbexec_enabled) : symbexec_enabled(symbexec_enabled) {
+    if (symbexec_enabled)
+        StartSymbex();
+}
+
+Interpreter::~Interpreter() {
+    if (symbexec_enabled)
+        EndSymbex(state.error_occurred);
+}
 
 any Interpreter::visitFunc(RRParser::FuncContext *ctx) {
     Function f {
@@ -95,6 +104,7 @@ any Interpreter::visitVariableRead(RRParser::VariableReadContext *ctx) {
     if (state.variables.count(varName)) {
         return state.variables[varName];
     } else {
+        state.error_occurred = true;
         throw runtime_error("Unknown variable name: " + varName);
     }
 }
@@ -106,6 +116,8 @@ any Interpreter::visitOpComparsion(RRParser::OpComparsionContext *ctx) {
     if (op == "==") return (int)(left == right);
     if (op == ">") return (int)(left > right);
     if (op == "<") return (int)(left < right);
+
+    state.error_occurred = true;
     throw runtime_error("Unknown operator: " + op);
 }
 
@@ -116,16 +128,16 @@ any Interpreter::visitFunctionCall(RRParser::FunctionCallContext *ctx) {
     function<int(vector<int>)> funcToCall;
 
     // Construct the function to call
-    if (řstd::_vifunc.count(funName)) {
+    if (rrstd::_vifunc.count(funName)) {
         targetArgSize = 1;
         funcToCall = [&](vector<int> args) {
-            řstd::_vifunc[funName](args[0]);
+            rrstd::_vifunc[funName](args[0]);
             return 0;
         };
-    } else if (řstd::_ivfunc.count(funName)) {
+    } else if (rrstd::_ivfunc.count(funName)) {
         targetArgSize = 0;
         funcToCall = [&](auto _) {
-            return řstd::_ivfunc[funName]();
+            return rrstd::_ivfunc[funName]();
         };
     } else if (state.functions.count(funName)) {
         auto function = state.functions[funName];
@@ -147,6 +159,7 @@ any Interpreter::visitFunctionCall(RRParser::FunctionCallContext *ctx) {
             return retVal;
         };
     } else {
+        state.error_occurred = true;
         throw runtime_error("Unknown function name: " + funName);
     }
 
@@ -155,6 +168,7 @@ any Interpreter::visitFunctionCall(RRParser::FunctionCallContext *ctx) {
     // Make sure there are enough arguments
     auto args = any_cast<vector<int>>(visitArglist(ctx->args));
     if (args.size() != targetArgSize) {
+        state.error_occurred = true;
         throw runtime_error("Function " + funName + " called with incorrect number of parameters.");
     }
 
@@ -166,10 +180,15 @@ any Interpreter::visitOpComputation(RRParser::OpComputationContext *ctx) {
     auto right = any_cast<int>(visit(ctx->right));
     auto op = ctx->op->getText();
     if (op == "*") return left * right;
-    if (op == "/" && right == 0) throw runtime_error("Division by zero");
+    if (op == "/" && right == 0) {
+        state.error_occurred = true;
+        throw runtime_error("Division by zero");
+    }
     if (op == "/") return left / right;
     if (op == "+") return left + right;
     if (op == "-") return left - right;
+
+    state.error_occurred = true;
     throw runtime_error("Unknown operator: " + op);
 }
 
@@ -178,6 +197,8 @@ any Interpreter::visitOpUnary(RRParser::OpUnaryContext *ctx) {
     auto op = ctx->op->getText();
     if (op == "!") return !expr;
     if (op == "-") return -expr;
+
+    state.error_occurred = true;
     throw runtime_error("Unknown operator: " + op);
 }
 

@@ -8,8 +8,6 @@
 
 #include "Interpreter.h"
 
-#include "../s2e/s2e.h"
-
 using namespace std;
 
 int main(int argc, char ** argv) {

@@ -11,6 +11,8 @@ class Interpreter : public RRBaseVisitor {
 public:
     Interpreter(bool symbexec_enabled);
 
+    virtual ~Interpreter();
+
     std::any visitFunc(RRParser::FuncContext *ctx) override;
 
     std::any visitLiteral(RRParser::LiteralContext *ctx) override;

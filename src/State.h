@@ -11,6 +11,7 @@ struct Function {
 };
 
 struct State {
+    bool error_occurred = false;
     std::unordered_map<std::string, int> variables;
     std::unordered_map<std::string, Function> functions;
 };
