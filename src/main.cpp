@@ -18,7 +18,8 @@ int main(int argc, char ** argv) {
 
 
     bool symbexec_enabled = false;
-    if(strcmp(getenv("RR_SYMBEX"), "1") == 0)
+    char * symbex_env = getenv("RR_SYMBEX");
+    if(symbex_env && strcmp(symbex_env, "1") == 0)
         symbexec_enabled = true;
 
 
