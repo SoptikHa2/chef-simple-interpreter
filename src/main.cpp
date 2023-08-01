@@ -1,10 +1,14 @@
 #include <string>
 #include <iostream>
+#include <cstdlib>
+#include <cstring>
 
 #include "gen/RRLexer.h"
 #include "gen/RRParser.h"
 
 #include "Interpreter.h"
+
+#include "../s2e/s2e.h"
 
 using namespace std;
 
@@ -13,6 +17,12 @@ int main(int argc, char ** argv) {
         cout << "Usage: ./chef_simple_interpreter <file>" << endl;
         return 1;
     }
+
+
+    bool symbexec_enabled = false;
+    if(strcmp(getenv("RR_SYMBEX"), "1") == 0)
+        symbexec_enabled = true;
+
 
     ifstream input_stream((string(argv[1])));
 
@@ -31,7 +41,7 @@ int main(int argc, char ** argv) {
     parser.setBuildParseTree(true);
     RRParser::ProgContext *tree = parser.prog();
 
-    Interpreter interpreter;
+    Interpreter interpreter(symbexec_enabled);
     interpreter.visitProg(tree);
 
     //cout << interpreter << endl;

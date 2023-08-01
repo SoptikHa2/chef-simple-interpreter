@@ -7,6 +7,8 @@
 
 using namespace std;
 
+Interpreter::Interpreter(bool symbexec_enabled) : symbexec_enabled(symbexec_enabled) {}
+
 any Interpreter::visitFunc(RRParser::FuncContext *ctx) {
     Function f {
             any_cast<vector<string>>(visitParamlist(ctx->params)),

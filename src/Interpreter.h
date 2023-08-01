@@ -6,8 +6,11 @@
 
 class Interpreter : public RRBaseVisitor {
     State state;
+    bool symbexec_enabled;
 
 public:
+    Interpreter(bool symbexec_enabled);
+
     std::any visitFunc(RRParser::FuncContext *ctx) override;
 
     std::any visitLiteral(RRParser::LiteralContext *ctx) override;
@@ -32,9 +35,9 @@ public:
 
     std::any visitOpUnary(RRParser::OpUnaryContext *ctx) override;
 
-    friend std::ostream &operator<<(std::ostream &os, const Interpreter &interpreter);
-
     std::any visitArglist(RRParser::ArglistContext *ctx) override;
 
     std::any visitParamlist(RRParser::ParamlistContext *ctx) override;
+
+    friend std::ostream &operator<<(std::ostream &os, const Interpreter &interpreter);
 };
