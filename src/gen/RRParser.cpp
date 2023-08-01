@@ -1,10 +1,10 @@
 
-// Generated from Ř.g4 by ANTLR 4.12.0
+// Generated from RR.g4 by ANTLR 4.12.0
 
 
-#include "ŘVisitor.h"
+#include "RRVisitor.h"
 
-#include "ŘParser.h"
+#include "RRParser.h"
 
 
 using namespace antlrcpp;
@@ -13,18 +13,18 @@ using namespace antlr4;
 
 namespace {
 
-struct ŘParserStaticData final {
-  ŘParserStaticData(std::vector<std::string> ruleNames,
+struct RRParserStaticData final {
+  RRParserStaticData(std::vector<std::string> ruleNames,
                         std::vector<std::string> literalNames,
                         std::vector<std::string> symbolicNames)
       : ruleNames(std::move(ruleNames)), literalNames(std::move(literalNames)),
         symbolicNames(std::move(symbolicNames)),
         vocabulary(this->literalNames, this->symbolicNames) {}
 
-  ŘParserStaticData(const ŘParserStaticData&) = delete;
-  ŘParserStaticData(ŘParserStaticData&&) = delete;
-  ŘParserStaticData& operator=(const ŘParserStaticData&) = delete;
-  ŘParserStaticData& operator=(ŘParserStaticData&&) = delete;
+  RRParserStaticData(const RRParserStaticData&) = delete;
+  RRParserStaticData(RRParserStaticData&&) = delete;
+  RRParserStaticData& operator=(const RRParserStaticData&) = delete;
+  RRParserStaticData& operator=(RRParserStaticData&&) = delete;
 
   std::vector<antlr4::dfa::DFA> decisionToDFA;
   antlr4::atn::PredictionContextCache sharedContextCache;
@@ -36,12 +36,12 @@ struct ŘParserStaticData final {
   std::unique_ptr<antlr4::atn::ATN> atn;
 };
 
-::antlr4::internal::OnceFlag řParserOnceFlag;
-ŘParserStaticData *řParserStaticData = nullptr;
+::antlr4::internal::OnceFlag rrParserOnceFlag;
+RRParserStaticData *rrParserStaticData = nullptr;
 
-void řParserInitialize() {
-  assert(řParserStaticData == nullptr);
-  auto staticData = std::make_unique<ŘParserStaticData>(
+void rrParserInitialize() {
+  assert(rrParserStaticData == nullptr);
+  auto staticData = std::make_unique<RRParserStaticData>(
     std::vector<std::string>{
       "prog", "block", "stmtlist", "stmt", "expr", "arglist", "func", "paramlist", 
       "literal"
@@ -105,73 +105,73 @@ void řParserInitialize() {
   for (size_t i = 0; i < count; i++) { 
     staticData->decisionToDFA.emplace_back(staticData->atn->getDecisionState(i), i);
   }
-  řParserStaticData = staticData.release();
+  rrParserStaticData = staticData.release();
 }
 
 }
 
-ŘParser::ŘParser(TokenStream *input) : ŘParser(input, antlr4::atn::ParserATNSimulatorOptions()) {}
+RRParser::RRParser(TokenStream *input) : RRParser(input, antlr4::atn::ParserATNSimulatorOptions()) {}
 
-ŘParser::ŘParser(TokenStream *input, const antlr4::atn::ParserATNSimulatorOptions &options) : Parser(input) {
-  ŘParser::initialize();
-  _interpreter = new atn::ParserATNSimulator(this, *řParserStaticData->atn, řParserStaticData->decisionToDFA, řParserStaticData->sharedContextCache, options);
+RRParser::RRParser(TokenStream *input, const antlr4::atn::ParserATNSimulatorOptions &options) : Parser(input) {
+  RRParser::initialize();
+  _interpreter = new atn::ParserATNSimulator(this, *rrParserStaticData->atn, rrParserStaticData->decisionToDFA, rrParserStaticData->sharedContextCache, options);
 }
 
-ŘParser::~ŘParser() {
+RRParser::~RRParser() {
   delete _interpreter;
 }
 
-const atn::ATN& ŘParser::getATN() const {
-  return *řParserStaticData->atn;
+const atn::ATN& RRParser::getATN() const {
+  return *rrParserStaticData->atn;
 }
 
-std::string ŘParser::getGrammarFileName() const {
-  return "Ř.g4";
+std::string RRParser::getGrammarFileName() const {
+  return "RR.g4";
 }
 
-const std::vector<std::string>& ŘParser::getRuleNames() const {
-  return řParserStaticData->ruleNames;
+const std::vector<std::string>& RRParser::getRuleNames() const {
+  return rrParserStaticData->ruleNames;
 }
 
-const dfa::Vocabulary& ŘParser::getVocabulary() const {
-  return řParserStaticData->vocabulary;
+const dfa::Vocabulary& RRParser::getVocabulary() const {
+  return rrParserStaticData->vocabulary;
 }
 
-antlr4::atn::SerializedATNView ŘParser::getSerializedATN() const {
-  return řParserStaticData->serializedATN;
+antlr4::atn::SerializedATNView RRParser::getSerializedATN() const {
+  return rrParserStaticData->serializedATN;
 }
 
 
 //----------------- ProgContext ------------------------------------------------------------------
 
-ŘParser::ProgContext::ProgContext(ParserRuleContext *parent, size_t invokingState)
+RRParser::ProgContext::ProgContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ŘParser::StmtlistContext* ŘParser::ProgContext::stmtlist() {
-  return getRuleContext<ŘParser::StmtlistContext>(0);
+RRParser::StmtlistContext* RRParser::ProgContext::stmtlist() {
+  return getRuleContext<RRParser::StmtlistContext>(0);
 }
 
-tree::TerminalNode* ŘParser::ProgContext::EOF() {
-  return getToken(ŘParser::EOF, 0);
-}
-
-
-size_t ŘParser::ProgContext::getRuleIndex() const {
-  return ŘParser::RuleProg;
+tree::TerminalNode* RRParser::ProgContext::EOF() {
+  return getToken(RRParser::EOF, 0);
 }
 
 
-std::any ŘParser::ProgContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+size_t RRParser::ProgContext::getRuleIndex() const {
+  return RRParser::RuleProg;
+}
+
+
+std::any RRParser::ProgContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitProg(this);
   else
     return visitor->visitChildren(this);
 }
 
-ŘParser::ProgContext* ŘParser::prog() {
+RRParser::ProgContext* RRParser::prog() {
   ProgContext *_localctx = _tracker.createInstance<ProgContext>(_ctx, getState());
-  enterRule(_localctx, 0, ŘParser::RuleProg);
+  enterRule(_localctx, 0, RRParser::RuleProg);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -185,7 +185,7 @@ std::any ŘParser::ProgContext::accept(tree::ParseTreeVisitor *visitor) {
     setState(18);
     stmtlist();
     setState(19);
-    match(ŘParser::EOF);
+    match(RRParser::EOF);
    
   }
   catch (RecognitionException &e) {
@@ -199,34 +199,34 @@ std::any ŘParser::ProgContext::accept(tree::ParseTreeVisitor *visitor) {
 
 //----------------- BlockContext ------------------------------------------------------------------
 
-ŘParser::BlockContext::BlockContext(ParserRuleContext *parent, size_t invokingState)
+RRParser::BlockContext::BlockContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ŘParser::StmtlistContext* ŘParser::BlockContext::stmtlist() {
-  return getRuleContext<ŘParser::StmtlistContext>(0);
+RRParser::StmtlistContext* RRParser::BlockContext::stmtlist() {
+  return getRuleContext<RRParser::StmtlistContext>(0);
 }
 
-ŘParser::StmtContext* ŘParser::BlockContext::stmt() {
-  return getRuleContext<ŘParser::StmtContext>(0);
-}
-
-
-size_t ŘParser::BlockContext::getRuleIndex() const {
-  return ŘParser::RuleBlock;
+RRParser::StmtContext* RRParser::BlockContext::stmt() {
+  return getRuleContext<RRParser::StmtContext>(0);
 }
 
 
-std::any ŘParser::BlockContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+size_t RRParser::BlockContext::getRuleIndex() const {
+  return RRParser::RuleBlock;
+}
+
+
+std::any RRParser::BlockContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitBlock(this);
   else
     return visitor->visitChildren(this);
 }
 
-ŘParser::BlockContext* ŘParser::block() {
+RRParser::BlockContext* RRParser::block() {
   BlockContext *_localctx = _tracker.createInstance<BlockContext>(_ctx, getState());
-  enterRule(_localctx, 2, ŘParser::RuleBlock);
+  enterRule(_localctx, 2, RRParser::RuleBlock);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -239,24 +239,24 @@ std::any ŘParser::BlockContext::accept(tree::ParseTreeVisitor *visitor) {
     setState(26);
     _errHandler->sync(this);
     switch (_input->LA(1)) {
-      case ŘParser::T__0: {
+      case RRParser::T__0: {
         enterOuterAlt(_localctx, 1);
         setState(21);
-        match(ŘParser::T__0);
+        match(RRParser::T__0);
         setState(22);
         stmtlist();
         setState(23);
-        match(ŘParser::T__1);
+        match(RRParser::T__1);
         break;
       }
 
-      case ŘParser::T__4:
-      case ŘParser::T__6:
-      case ŘParser::T__7:
-      case ŘParser::T__12:
-      case ŘParser::T__16:
-      case ŘParser::INTLIT:
-      case ŘParser::ID: {
+      case RRParser::T__4:
+      case RRParser::T__6:
+      case RRParser::T__7:
+      case RRParser::T__12:
+      case RRParser::T__16:
+      case RRParser::INTLIT:
+      case RRParser::ID: {
         enterOuterAlt(_localctx, 2);
         setState(25);
         stmt();
@@ -279,38 +279,38 @@ std::any ŘParser::BlockContext::accept(tree::ParseTreeVisitor *visitor) {
 
 //----------------- StmtlistContext ------------------------------------------------------------------
 
-ŘParser::StmtlistContext::StmtlistContext(ParserRuleContext *parent, size_t invokingState)
+RRParser::StmtlistContext::StmtlistContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ŘParser::StmtContext* ŘParser::StmtlistContext::stmt() {
-  return getRuleContext<ŘParser::StmtContext>(0);
+RRParser::StmtContext* RRParser::StmtlistContext::stmt() {
+  return getRuleContext<RRParser::StmtContext>(0);
 }
 
-std::vector<ŘParser::StmtlistContext *> ŘParser::StmtlistContext::stmtlist() {
-  return getRuleContexts<ŘParser::StmtlistContext>();
+std::vector<RRParser::StmtlistContext *> RRParser::StmtlistContext::stmtlist() {
+  return getRuleContexts<RRParser::StmtlistContext>();
 }
 
-ŘParser::StmtlistContext* ŘParser::StmtlistContext::stmtlist(size_t i) {
-  return getRuleContext<ŘParser::StmtlistContext>(i);
-}
-
-
-size_t ŘParser::StmtlistContext::getRuleIndex() const {
-  return ŘParser::RuleStmtlist;
+RRParser::StmtlistContext* RRParser::StmtlistContext::stmtlist(size_t i) {
+  return getRuleContext<RRParser::StmtlistContext>(i);
 }
 
 
-std::any ŘParser::StmtlistContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+size_t RRParser::StmtlistContext::getRuleIndex() const {
+  return RRParser::RuleStmtlist;
+}
+
+
+std::any RRParser::StmtlistContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitStmtlist(this);
   else
     return visitor->visitChildren(this);
 }
 
-ŘParser::StmtlistContext* ŘParser::stmtlist() {
+RRParser::StmtlistContext* RRParser::stmtlist() {
   StmtlistContext *_localctx = _tracker.createInstance<StmtlistContext>(_ctx, getState());
-  enterRule(_localctx, 4, ŘParser::RuleStmtlist);
+  enterRule(_localctx, 4, RRParser::RuleStmtlist);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -330,7 +330,7 @@ std::any ŘParser::StmtlistContext::accept(tree::ParseTreeVisitor *visitor) {
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
         setState(29);
-        match(ŘParser::T__2);
+        match(RRParser::T__2);
         setState(30);
         stmtlist(); 
       }
@@ -344,7 +344,7 @@ std::any ŘParser::StmtlistContext::accept(tree::ParseTreeVisitor *visitor) {
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 2, _ctx)) {
     case 1: {
       setState(36);
-      match(ŘParser::T__2);
+      match(RRParser::T__2);
       break;
     }
 
@@ -364,136 +364,136 @@ std::any ŘParser::StmtlistContext::accept(tree::ParseTreeVisitor *visitor) {
 
 //----------------- StmtContext ------------------------------------------------------------------
 
-ŘParser::StmtContext::StmtContext(ParserRuleContext *parent, size_t invokingState)
+RRParser::StmtContext::StmtContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
 
-size_t ŘParser::StmtContext::getRuleIndex() const {
-  return ŘParser::RuleStmt;
+size_t RRParser::StmtContext::getRuleIndex() const {
+  return RRParser::RuleStmt;
 }
 
-void ŘParser::StmtContext::copyFrom(StmtContext *ctx) {
+void RRParser::StmtContext::copyFrom(StmtContext *ctx) {
   ParserRuleContext::copyFrom(ctx);
 }
 
 //----------------- ExpressionContext ------------------------------------------------------------------
 
-ŘParser::ExprContext* ŘParser::ExpressionContext::expr() {
-  return getRuleContext<ŘParser::ExprContext>(0);
+RRParser::ExprContext* RRParser::ExpressionContext::expr() {
+  return getRuleContext<RRParser::ExprContext>(0);
 }
 
-ŘParser::ExpressionContext::ExpressionContext(StmtContext *ctx) { copyFrom(ctx); }
+RRParser::ExpressionContext::ExpressionContext(StmtContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::ExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::ExpressionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitExpression(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- IfElseConditionContext ------------------------------------------------------------------
 
-ŘParser::ExprContext* ŘParser::IfElseConditionContext::expr() {
-  return getRuleContext<ŘParser::ExprContext>(0);
+RRParser::ExprContext* RRParser::IfElseConditionContext::expr() {
+  return getRuleContext<RRParser::ExprContext>(0);
 }
 
-std::vector<ŘParser::BlockContext *> ŘParser::IfElseConditionContext::block() {
-  return getRuleContexts<ŘParser::BlockContext>();
+std::vector<RRParser::BlockContext *> RRParser::IfElseConditionContext::block() {
+  return getRuleContexts<RRParser::BlockContext>();
 }
 
-ŘParser::BlockContext* ŘParser::IfElseConditionContext::block(size_t i) {
-  return getRuleContext<ŘParser::BlockContext>(i);
+RRParser::BlockContext* RRParser::IfElseConditionContext::block(size_t i) {
+  return getRuleContext<RRParser::BlockContext>(i);
 }
 
-ŘParser::IfElseConditionContext::IfElseConditionContext(StmtContext *ctx) { copyFrom(ctx); }
+RRParser::IfElseConditionContext::IfElseConditionContext(StmtContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::IfElseConditionContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::IfElseConditionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitIfElseCondition(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- VariableAssignmentContext ------------------------------------------------------------------
 
-tree::TerminalNode* ŘParser::VariableAssignmentContext::ID() {
-  return getToken(ŘParser::ID, 0);
+tree::TerminalNode* RRParser::VariableAssignmentContext::ID() {
+  return getToken(RRParser::ID, 0);
 }
 
-ŘParser::ExprContext* ŘParser::VariableAssignmentContext::expr() {
-  return getRuleContext<ŘParser::ExprContext>(0);
+RRParser::ExprContext* RRParser::VariableAssignmentContext::expr() {
+  return getRuleContext<RRParser::ExprContext>(0);
 }
 
-ŘParser::VariableAssignmentContext::VariableAssignmentContext(StmtContext *ctx) { copyFrom(ctx); }
+RRParser::VariableAssignmentContext::VariableAssignmentContext(StmtContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::VariableAssignmentContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::VariableAssignmentContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitVariableAssignment(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- FunctionDefinitionContext ------------------------------------------------------------------
 
-tree::TerminalNode* ŘParser::FunctionDefinitionContext::ID() {
-  return getToken(ŘParser::ID, 0);
+tree::TerminalNode* RRParser::FunctionDefinitionContext::ID() {
+  return getToken(RRParser::ID, 0);
 }
 
-ŘParser::FuncContext* ŘParser::FunctionDefinitionContext::func() {
-  return getRuleContext<ŘParser::FuncContext>(0);
+RRParser::FuncContext* RRParser::FunctionDefinitionContext::func() {
+  return getRuleContext<RRParser::FuncContext>(0);
 }
 
-ŘParser::FunctionDefinitionContext::FunctionDefinitionContext(StmtContext *ctx) { copyFrom(ctx); }
+RRParser::FunctionDefinitionContext::FunctionDefinitionContext(StmtContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::FunctionDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::FunctionDefinitionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitFunctionDefinition(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- IfConditionContext ------------------------------------------------------------------
 
-ŘParser::ExprContext* ŘParser::IfConditionContext::expr() {
-  return getRuleContext<ŘParser::ExprContext>(0);
+RRParser::ExprContext* RRParser::IfConditionContext::expr() {
+  return getRuleContext<RRParser::ExprContext>(0);
 }
 
-ŘParser::BlockContext* ŘParser::IfConditionContext::block() {
-  return getRuleContext<ŘParser::BlockContext>(0);
+RRParser::BlockContext* RRParser::IfConditionContext::block() {
+  return getRuleContext<RRParser::BlockContext>(0);
 }
 
-ŘParser::IfConditionContext::IfConditionContext(StmtContext *ctx) { copyFrom(ctx); }
+RRParser::IfConditionContext::IfConditionContext(StmtContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::IfConditionContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::IfConditionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitIfCondition(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- WhileLoopContext ------------------------------------------------------------------
 
-ŘParser::ExprContext* ŘParser::WhileLoopContext::expr() {
-  return getRuleContext<ŘParser::ExprContext>(0);
+RRParser::ExprContext* RRParser::WhileLoopContext::expr() {
+  return getRuleContext<RRParser::ExprContext>(0);
 }
 
-ŘParser::BlockContext* ŘParser::WhileLoopContext::block() {
-  return getRuleContext<ŘParser::BlockContext>(0);
+RRParser::BlockContext* RRParser::WhileLoopContext::block() {
+  return getRuleContext<RRParser::BlockContext>(0);
 }
 
-ŘParser::WhileLoopContext::WhileLoopContext(StmtContext *ctx) { copyFrom(ctx); }
+RRParser::WhileLoopContext::WhileLoopContext(StmtContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::WhileLoopContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::WhileLoopContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitWhileLoop(this);
   else
     return visitor->visitChildren(this);
 }
-ŘParser::StmtContext* ŘParser::stmt() {
+RRParser::StmtContext* RRParser::stmt() {
   StmtContext *_localctx = _tracker.createInstance<StmtContext>(_ctx, getState());
-  enterRule(_localctx, 6, ŘParser::RuleStmt);
+  enterRule(_localctx, 6, RRParser::RuleStmt);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -507,34 +507,34 @@ std::any ŘParser::WhileLoopContext::accept(tree::ParseTreeVisitor *visitor) {
     _errHandler->sync(this);
     switch (getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 3, _ctx)) {
     case 1: {
-      _localctx = _tracker.createInstance<ŘParser::VariableAssignmentContext>(_localctx);
+      _localctx = _tracker.createInstance<RRParser::VariableAssignmentContext>(_localctx);
       enterOuterAlt(_localctx, 1);
       setState(39);
-      match(ŘParser::ID);
+      match(RRParser::ID);
       setState(40);
-      match(ŘParser::T__3);
+      match(RRParser::T__3);
       setState(41);
       expr(0);
       break;
     }
 
     case 2: {
-      _localctx = _tracker.createInstance<ŘParser::FunctionDefinitionContext>(_localctx);
+      _localctx = _tracker.createInstance<RRParser::FunctionDefinitionContext>(_localctx);
       enterOuterAlt(_localctx, 2);
       setState(42);
-      match(ŘParser::ID);
+      match(RRParser::ID);
       setState(43);
-      match(ŘParser::T__3);
+      match(RRParser::T__3);
       setState(44);
       func();
       break;
     }
 
     case 3: {
-      _localctx = _tracker.createInstance<ŘParser::IfConditionContext>(_localctx);
+      _localctx = _tracker.createInstance<RRParser::IfConditionContext>(_localctx);
       enterOuterAlt(_localctx, 3);
       setState(45);
-      match(ŘParser::T__4);
+      match(RRParser::T__4);
       setState(46);
       antlrcpp::downCast<IfConditionContext *>(_localctx)->cond = expr(0);
       setState(47);
@@ -543,26 +543,26 @@ std::any ŘParser::WhileLoopContext::accept(tree::ParseTreeVisitor *visitor) {
     }
 
     case 4: {
-      _localctx = _tracker.createInstance<ŘParser::IfElseConditionContext>(_localctx);
+      _localctx = _tracker.createInstance<RRParser::IfElseConditionContext>(_localctx);
       enterOuterAlt(_localctx, 4);
       setState(49);
-      match(ŘParser::T__4);
+      match(RRParser::T__4);
       setState(50);
       antlrcpp::downCast<IfElseConditionContext *>(_localctx)->cond = expr(0);
       setState(51);
       antlrcpp::downCast<IfElseConditionContext *>(_localctx)->truebody = block();
       setState(52);
-      match(ŘParser::T__5);
+      match(RRParser::T__5);
       setState(53);
       antlrcpp::downCast<IfElseConditionContext *>(_localctx)->falsebody = block();
       break;
     }
 
     case 5: {
-      _localctx = _tracker.createInstance<ŘParser::WhileLoopContext>(_localctx);
+      _localctx = _tracker.createInstance<RRParser::WhileLoopContext>(_localctx);
       enterOuterAlt(_localctx, 5);
       setState(55);
-      match(ŘParser::T__6);
+      match(RRParser::T__6);
       setState(56);
       antlrcpp::downCast<WhileLoopContext *>(_localctx)->cond = expr(0);
       setState(57);
@@ -571,7 +571,7 @@ std::any ŘParser::WhileLoopContext::accept(tree::ParseTreeVisitor *visitor) {
     }
 
     case 6: {
-      _localctx = _tracker.createInstance<ŘParser::ExpressionContext>(_localctx);
+      _localctx = _tracker.createInstance<RRParser::ExpressionContext>(_localctx);
       enterOuterAlt(_localctx, 6);
       setState(59);
       expr(0);
@@ -594,149 +594,149 @@ std::any ŘParser::WhileLoopContext::accept(tree::ParseTreeVisitor *visitor) {
 
 //----------------- ExprContext ------------------------------------------------------------------
 
-ŘParser::ExprContext::ExprContext(ParserRuleContext *parent, size_t invokingState)
+RRParser::ExprContext::ExprContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
 
-size_t ŘParser::ExprContext::getRuleIndex() const {
-  return ŘParser::RuleExpr;
+size_t RRParser::ExprContext::getRuleIndex() const {
+  return RRParser::RuleExpr;
 }
 
-void ŘParser::ExprContext::copyFrom(ExprContext *ctx) {
+void RRParser::ExprContext::copyFrom(ExprContext *ctx) {
   ParserRuleContext::copyFrom(ctx);
 }
 
 //----------------- OpUnaryContext ------------------------------------------------------------------
 
-ŘParser::ExprContext* ŘParser::OpUnaryContext::expr() {
-  return getRuleContext<ŘParser::ExprContext>(0);
+RRParser::ExprContext* RRParser::OpUnaryContext::expr() {
+  return getRuleContext<RRParser::ExprContext>(0);
 }
 
-ŘParser::OpUnaryContext::OpUnaryContext(ExprContext *ctx) { copyFrom(ctx); }
+RRParser::OpUnaryContext::OpUnaryContext(ExprContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::OpUnaryContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::OpUnaryContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitOpUnary(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- VariableReadContext ------------------------------------------------------------------
 
-tree::TerminalNode* ŘParser::VariableReadContext::ID() {
-  return getToken(ŘParser::ID, 0);
+tree::TerminalNode* RRParser::VariableReadContext::ID() {
+  return getToken(RRParser::ID, 0);
 }
 
-ŘParser::VariableReadContext::VariableReadContext(ExprContext *ctx) { copyFrom(ctx); }
+RRParser::VariableReadContext::VariableReadContext(ExprContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::VariableReadContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::VariableReadContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitVariableRead(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- LitContext ------------------------------------------------------------------
 
-ŘParser::LiteralContext* ŘParser::LitContext::literal() {
-  return getRuleContext<ŘParser::LiteralContext>(0);
+RRParser::LiteralContext* RRParser::LitContext::literal() {
+  return getRuleContext<RRParser::LiteralContext>(0);
 }
 
-ŘParser::LitContext::LitContext(ExprContext *ctx) { copyFrom(ctx); }
+RRParser::LitContext::LitContext(ExprContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::LitContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::LitContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitLit(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- OpComparsionContext ------------------------------------------------------------------
 
-std::vector<ŘParser::ExprContext *> ŘParser::OpComparsionContext::expr() {
-  return getRuleContexts<ŘParser::ExprContext>();
+std::vector<RRParser::ExprContext *> RRParser::OpComparsionContext::expr() {
+  return getRuleContexts<RRParser::ExprContext>();
 }
 
-ŘParser::ExprContext* ŘParser::OpComparsionContext::expr(size_t i) {
-  return getRuleContext<ŘParser::ExprContext>(i);
+RRParser::ExprContext* RRParser::OpComparsionContext::expr(size_t i) {
+  return getRuleContext<RRParser::ExprContext>(i);
 }
 
-ŘParser::OpComparsionContext::OpComparsionContext(ExprContext *ctx) { copyFrom(ctx); }
+RRParser::OpComparsionContext::OpComparsionContext(ExprContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::OpComparsionContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::OpComparsionContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitOpComparsion(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- FunctionCallContext ------------------------------------------------------------------
 
-tree::TerminalNode* ŘParser::FunctionCallContext::ID() {
-  return getToken(ŘParser::ID, 0);
+tree::TerminalNode* RRParser::FunctionCallContext::ID() {
+  return getToken(RRParser::ID, 0);
 }
 
-ŘParser::ArglistContext* ŘParser::FunctionCallContext::arglist() {
-  return getRuleContext<ŘParser::ArglistContext>(0);
+RRParser::ArglistContext* RRParser::FunctionCallContext::arglist() {
+  return getRuleContext<RRParser::ArglistContext>(0);
 }
 
-ŘParser::FunctionCallContext::FunctionCallContext(ExprContext *ctx) { copyFrom(ctx); }
+RRParser::FunctionCallContext::FunctionCallContext(ExprContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::FunctionCallContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::FunctionCallContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitFunctionCall(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- OpParensContext ------------------------------------------------------------------
 
-ŘParser::ExprContext* ŘParser::OpParensContext::expr() {
-  return getRuleContext<ŘParser::ExprContext>(0);
+RRParser::ExprContext* RRParser::OpParensContext::expr() {
+  return getRuleContext<RRParser::ExprContext>(0);
 }
 
-ŘParser::OpParensContext::OpParensContext(ExprContext *ctx) { copyFrom(ctx); }
+RRParser::OpParensContext::OpParensContext(ExprContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::OpParensContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::OpParensContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitOpParens(this);
   else
     return visitor->visitChildren(this);
 }
 //----------------- OpComputationContext ------------------------------------------------------------------
 
-std::vector<ŘParser::ExprContext *> ŘParser::OpComputationContext::expr() {
-  return getRuleContexts<ŘParser::ExprContext>();
+std::vector<RRParser::ExprContext *> RRParser::OpComputationContext::expr() {
+  return getRuleContexts<RRParser::ExprContext>();
 }
 
-ŘParser::ExprContext* ŘParser::OpComputationContext::expr(size_t i) {
-  return getRuleContext<ŘParser::ExprContext>(i);
+RRParser::ExprContext* RRParser::OpComputationContext::expr(size_t i) {
+  return getRuleContext<RRParser::ExprContext>(i);
 }
 
-ŘParser::OpComputationContext::OpComputationContext(ExprContext *ctx) { copyFrom(ctx); }
+RRParser::OpComputationContext::OpComputationContext(ExprContext *ctx) { copyFrom(ctx); }
 
 
-std::any ŘParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitOpComputation(this);
   else
     return visitor->visitChildren(this);
 }
 
-ŘParser::ExprContext* ŘParser::expr() {
+RRParser::ExprContext* RRParser::expr() {
    return expr(0);
 }
 
-ŘParser::ExprContext* ŘParser::expr(int precedence) {
+RRParser::ExprContext* RRParser::expr(int precedence) {
   ParserRuleContext *parentContext = _ctx;
   size_t parentState = getState();
-  ŘParser::ExprContext *_localctx = _tracker.createInstance<ExprContext>(_ctx, parentState);
-  ŘParser::ExprContext *previousContext = _localctx;
+  RRParser::ExprContext *_localctx = _tracker.createInstance<ExprContext>(_ctx, parentState);
+  RRParser::ExprContext *previousContext = _localctx;
   (void)previousContext; // Silence compiler, in case the context is not used by generated code.
   size_t startState = 8;
-  enterRecursionRule(_localctx, 8, ŘParser::RuleExpr, precedence);
+  enterRecursionRule(_localctx, 8, RRParser::RuleExpr, precedence);
 
     size_t _la = 0;
 
@@ -768,7 +768,7 @@ std::any ŘParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor)
       _ctx = _localctx;
       previousContext = _localctx;
       setState(64);
-      match(ŘParser::ID);
+      match(RRParser::ID);
       break;
     }
 
@@ -777,9 +777,9 @@ std::any ŘParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor)
       _ctx = _localctx;
       previousContext = _localctx;
       setState(65);
-      antlrcpp::downCast<FunctionCallContext *>(_localctx)->fun = match(ŘParser::ID);
+      antlrcpp::downCast<FunctionCallContext *>(_localctx)->fun = match(RRParser::ID);
       setState(66);
-      match(ŘParser::T__7);
+      match(RRParser::T__7);
       setState(68);
       _errHandler->sync(this);
 
@@ -790,7 +790,7 @@ std::any ŘParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor)
         antlrcpp::downCast<FunctionCallContext *>(_localctx)->args = arglist();
       }
       setState(70);
-      match(ŘParser::T__8);
+      match(RRParser::T__8);
       break;
     }
 
@@ -801,9 +801,9 @@ std::any ŘParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor)
       setState(71);
       antlrcpp::downCast<OpUnaryContext *>(_localctx)->op = _input->LT(1);
       _la = _input->LA(1);
-      if (!(_la == ŘParser::T__12
+      if (!(_la == RRParser::T__12
 
-      || _la == ŘParser::T__16)) {
+      || _la == RRParser::T__16)) {
         antlrcpp::downCast<OpUnaryContext *>(_localctx)->op = _errHandler->recoverInline(this);
       }
       else {
@@ -820,11 +820,11 @@ std::any ŘParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor)
       _ctx = _localctx;
       previousContext = _localctx;
       setState(73);
-      match(ŘParser::T__7);
+      match(RRParser::T__7);
       setState(74);
       antlrcpp::downCast<OpParensContext *>(_localctx)->e = expr(0);
       setState(75);
-      match(ŘParser::T__8);
+      match(RRParser::T__8);
       break;
     }
 
@@ -854,9 +854,9 @@ std::any ŘParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor)
           setState(80);
           antlrcpp::downCast<OpComputationContext *>(_localctx)->op = _input->LT(1);
           _la = _input->LA(1);
-          if (!(_la == ŘParser::T__9
+          if (!(_la == RRParser::T__9
 
-          || _la == ŘParser::T__10)) {
+          || _la == RRParser::T__10)) {
             antlrcpp::downCast<OpComputationContext *>(_localctx)->op = _errHandler->recoverInline(this);
           }
           else {
@@ -879,9 +879,9 @@ std::any ŘParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor)
           setState(83);
           antlrcpp::downCast<OpComputationContext *>(_localctx)->op = _input->LT(1);
           _la = _input->LA(1);
-          if (!(_la == ŘParser::T__11
+          if (!(_la == RRParser::T__11
 
-          || _la == ŘParser::T__12)) {
+          || _la == RRParser::T__12)) {
             antlrcpp::downCast<OpComputationContext *>(_localctx)->op = _errHandler->recoverInline(this);
           }
           else {
@@ -936,38 +936,38 @@ std::any ŘParser::OpComputationContext::accept(tree::ParseTreeVisitor *visitor)
 
 //----------------- ArglistContext ------------------------------------------------------------------
 
-ŘParser::ArglistContext::ArglistContext(ParserRuleContext *parent, size_t invokingState)
+RRParser::ArglistContext::ArglistContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ŘParser::ExprContext* ŘParser::ArglistContext::expr() {
-  return getRuleContext<ŘParser::ExprContext>(0);
+RRParser::ExprContext* RRParser::ArglistContext::expr() {
+  return getRuleContext<RRParser::ExprContext>(0);
 }
 
-std::vector<ŘParser::ArglistContext *> ŘParser::ArglistContext::arglist() {
-  return getRuleContexts<ŘParser::ArglistContext>();
+std::vector<RRParser::ArglistContext *> RRParser::ArglistContext::arglist() {
+  return getRuleContexts<RRParser::ArglistContext>();
 }
 
-ŘParser::ArglistContext* ŘParser::ArglistContext::arglist(size_t i) {
-  return getRuleContext<ŘParser::ArglistContext>(i);
-}
-
-
-size_t ŘParser::ArglistContext::getRuleIndex() const {
-  return ŘParser::RuleArglist;
+RRParser::ArglistContext* RRParser::ArglistContext::arglist(size_t i) {
+  return getRuleContext<RRParser::ArglistContext>(i);
 }
 
 
-std::any ŘParser::ArglistContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+size_t RRParser::ArglistContext::getRuleIndex() const {
+  return RRParser::RuleArglist;
+}
+
+
+std::any RRParser::ArglistContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitArglist(this);
   else
     return visitor->visitChildren(this);
 }
 
-ŘParser::ArglistContext* ŘParser::arglist() {
+RRParser::ArglistContext* RRParser::arglist() {
   ArglistContext *_localctx = _tracker.createInstance<ArglistContext>(_ctx, getState());
-  enterRule(_localctx, 10, ŘParser::RuleArglist);
+  enterRule(_localctx, 10, RRParser::RuleArglist);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -987,7 +987,7 @@ std::any ŘParser::ArglistContext::accept(tree::ParseTreeVisitor *visitor) {
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
         setState(94);
-        match(ŘParser::T__17);
+        match(RRParser::T__17);
         setState(95);
         arglist(); 
       }
@@ -1008,34 +1008,34 @@ std::any ŘParser::ArglistContext::accept(tree::ParseTreeVisitor *visitor) {
 
 //----------------- FuncContext ------------------------------------------------------------------
 
-ŘParser::FuncContext::FuncContext(ParserRuleContext *parent, size_t invokingState)
+RRParser::FuncContext::FuncContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-ŘParser::BlockContext* ŘParser::FuncContext::block() {
-  return getRuleContext<ŘParser::BlockContext>(0);
+RRParser::BlockContext* RRParser::FuncContext::block() {
+  return getRuleContext<RRParser::BlockContext>(0);
 }
 
-ŘParser::ParamlistContext* ŘParser::FuncContext::paramlist() {
-  return getRuleContext<ŘParser::ParamlistContext>(0);
-}
-
-
-size_t ŘParser::FuncContext::getRuleIndex() const {
-  return ŘParser::RuleFunc;
+RRParser::ParamlistContext* RRParser::FuncContext::paramlist() {
+  return getRuleContext<RRParser::ParamlistContext>(0);
 }
 
 
-std::any ŘParser::FuncContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+size_t RRParser::FuncContext::getRuleIndex() const {
+  return RRParser::RuleFunc;
+}
+
+
+std::any RRParser::FuncContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitFunc(this);
   else
     return visitor->visitChildren(this);
 }
 
-ŘParser::FuncContext* ŘParser::func() {
+RRParser::FuncContext* RRParser::func() {
   FuncContext *_localctx = _tracker.createInstance<FuncContext>(_ctx, getState());
-  enterRule(_localctx, 12, ŘParser::RuleFunc);
+  enterRule(_localctx, 12, RRParser::RuleFunc);
   size_t _la = 0;
 
 #if __cplusplus > 201703L
@@ -1048,19 +1048,19 @@ std::any ŘParser::FuncContext::accept(tree::ParseTreeVisitor *visitor) {
   try {
     enterOuterAlt(_localctx, 1);
     setState(101);
-    match(ŘParser::T__18);
+    match(RRParser::T__18);
     setState(102);
-    match(ŘParser::T__7);
+    match(RRParser::T__7);
     setState(104);
     _errHandler->sync(this);
 
     _la = _input->LA(1);
-    if (_la == ŘParser::ID) {
+    if (_la == RRParser::ID) {
       setState(103);
       antlrcpp::downCast<FuncContext *>(_localctx)->params = paramlist();
     }
     setState(106);
-    match(ŘParser::T__8);
+    match(RRParser::T__8);
     setState(107);
     block();
    
@@ -1076,38 +1076,38 @@ std::any ŘParser::FuncContext::accept(tree::ParseTreeVisitor *visitor) {
 
 //----------------- ParamlistContext ------------------------------------------------------------------
 
-ŘParser::ParamlistContext::ParamlistContext(ParserRuleContext *parent, size_t invokingState)
+RRParser::ParamlistContext::ParamlistContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* ŘParser::ParamlistContext::ID() {
-  return getToken(ŘParser::ID, 0);
+tree::TerminalNode* RRParser::ParamlistContext::ID() {
+  return getToken(RRParser::ID, 0);
 }
 
-std::vector<ŘParser::ParamlistContext *> ŘParser::ParamlistContext::paramlist() {
-  return getRuleContexts<ŘParser::ParamlistContext>();
+std::vector<RRParser::ParamlistContext *> RRParser::ParamlistContext::paramlist() {
+  return getRuleContexts<RRParser::ParamlistContext>();
 }
 
-ŘParser::ParamlistContext* ŘParser::ParamlistContext::paramlist(size_t i) {
-  return getRuleContext<ŘParser::ParamlistContext>(i);
-}
-
-
-size_t ŘParser::ParamlistContext::getRuleIndex() const {
-  return ŘParser::RuleParamlist;
+RRParser::ParamlistContext* RRParser::ParamlistContext::paramlist(size_t i) {
+  return getRuleContext<RRParser::ParamlistContext>(i);
 }
 
 
-std::any ŘParser::ParamlistContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+size_t RRParser::ParamlistContext::getRuleIndex() const {
+  return RRParser::RuleParamlist;
+}
+
+
+std::any RRParser::ParamlistContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitParamlist(this);
   else
     return visitor->visitChildren(this);
 }
 
-ŘParser::ParamlistContext* ŘParser::paramlist() {
+RRParser::ParamlistContext* RRParser::paramlist() {
   ParamlistContext *_localctx = _tracker.createInstance<ParamlistContext>(_ctx, getState());
-  enterRule(_localctx, 14, ŘParser::RuleParamlist);
+  enterRule(_localctx, 14, RRParser::RuleParamlist);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1120,14 +1120,14 @@ std::any ŘParser::ParamlistContext::accept(tree::ParseTreeVisitor *visitor) {
     size_t alt;
     enterOuterAlt(_localctx, 1);
     setState(109);
-    match(ŘParser::ID);
+    match(RRParser::ID);
     setState(114);
     _errHandler->sync(this);
     alt = getInterpreter<atn::ParserATNSimulator>()->adaptivePredict(_input, 10, _ctx);
     while (alt != 2 && alt != atn::ATN::INVALID_ALT_NUMBER) {
       if (alt == 1) {
         setState(110);
-        match(ŘParser::T__17);
+        match(RRParser::T__17);
         setState(111);
         paramlist(); 
       }
@@ -1148,30 +1148,30 @@ std::any ŘParser::ParamlistContext::accept(tree::ParseTreeVisitor *visitor) {
 
 //----------------- LiteralContext ------------------------------------------------------------------
 
-ŘParser::LiteralContext::LiteralContext(ParserRuleContext *parent, size_t invokingState)
+RRParser::LiteralContext::LiteralContext(ParserRuleContext *parent, size_t invokingState)
   : ParserRuleContext(parent, invokingState) {
 }
 
-tree::TerminalNode* ŘParser::LiteralContext::INTLIT() {
-  return getToken(ŘParser::INTLIT, 0);
+tree::TerminalNode* RRParser::LiteralContext::INTLIT() {
+  return getToken(RRParser::INTLIT, 0);
 }
 
 
-size_t ŘParser::LiteralContext::getRuleIndex() const {
-  return ŘParser::RuleLiteral;
+size_t RRParser::LiteralContext::getRuleIndex() const {
+  return RRParser::RuleLiteral;
 }
 
 
-std::any ŘParser::LiteralContext::accept(tree::ParseTreeVisitor *visitor) {
-  if (auto parserVisitor = dynamic_cast<ŘVisitor*>(visitor))
+std::any RRParser::LiteralContext::accept(tree::ParseTreeVisitor *visitor) {
+  if (auto parserVisitor = dynamic_cast<RRVisitor*>(visitor))
     return parserVisitor->visitLiteral(this);
   else
     return visitor->visitChildren(this);
 }
 
-ŘParser::LiteralContext* ŘParser::literal() {
+RRParser::LiteralContext* RRParser::literal() {
   LiteralContext *_localctx = _tracker.createInstance<LiteralContext>(_ctx, getState());
-  enterRule(_localctx, 16, ŘParser::RuleLiteral);
+  enterRule(_localctx, 16, RRParser::RuleLiteral);
 
 #if __cplusplus > 201703L
   auto onExit = finally([=, this] {
@@ -1183,7 +1183,7 @@ std::any ŘParser::LiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   try {
     enterOuterAlt(_localctx, 1);
     setState(117);
-    match(ŘParser::INTLIT);
+    match(RRParser::INTLIT);
    
   }
   catch (RecognitionException &e) {
@@ -1195,7 +1195,7 @@ std::any ŘParser::LiteralContext::accept(tree::ParseTreeVisitor *visitor) {
   return _localctx;
 }
 
-bool ŘParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateIndex) {
+bool RRParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateIndex) {
   switch (ruleIndex) {
     case 4: return exprSempred(antlrcpp::downCast<ExprContext *>(context), predicateIndex);
 
@@ -1205,7 +1205,7 @@ bool ŘParser::sempred(RuleContext *context, size_t ruleIndex, size_t predicateI
   return true;
 }
 
-bool ŘParser::exprSempred(ExprContext *_localctx, size_t predicateIndex) {
+bool RRParser::exprSempred(ExprContext *_localctx, size_t predicateIndex) {
   switch (predicateIndex) {
     case 0: return precpred(_ctx, 5);
     case 1: return precpred(_ctx, 4);
@@ -1217,6 +1217,6 @@ bool ŘParser::exprSempred(ExprContext *_localctx, size_t predicateIndex) {
   return true;
 }
 
-void ŘParser::initialize() {
-  ::antlr4::internal::call_once(řParserOnceFlag, řParserInitialize);
+void RRParser::initialize() {
+  ::antlr4::internal::call_once(rrParserOnceFlag, rrParserInitialize);
 }

@@ -1,6 +1,8 @@
 #pragma once
 
 #include <iostream>
+#include <functional>
+#include <unordered_map>
 
 namespace řstd {
     void printChar(int expr) {

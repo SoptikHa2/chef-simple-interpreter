@@ -3,11 +3,11 @@
 #include <exception>
 
 #include "Interpreter.h"
-#include "Řstdlib.hpp"
+#include "RRstdlib.hpp"
 
 using namespace std;
 
-any Interpreter::visitFunc(ŘParser::FuncContext *ctx) {
+any Interpreter::visitFunc(RRParser::FuncContext *ctx) {
     Function f {
             any_cast<vector<string>>(visitParamlist(ctx->params)),
             ctx->block()
@@ -16,11 +16,11 @@ any Interpreter::visitFunc(ŘParser::FuncContext *ctx) {
     return f;
 }
 
-any Interpreter::visitLiteral(ŘParser::LiteralContext *ctx) {
+any Interpreter::visitLiteral(RRParser::LiteralContext *ctx) {
     return atoi(ctx->INTLIT()->getText().c_str());
 }
 
-any Interpreter::visitArglist(ŘParser::ArglistContext *ctx) {
+any Interpreter::visitArglist(RRParser::ArglistContext *ctx) {
     if(!ctx) return vector<int>();
 
     vector<int> args;
@@ -35,7 +35,7 @@ any Interpreter::visitArglist(ŘParser::ArglistContext *ctx) {
     return args;
 }
 
-any Interpreter::visitParamlist(ŘParser::ParamlistContext *ctx) {
+any Interpreter::visitParamlist(RRParser::ParamlistContext *ctx) {
     if(!ctx) return vector<string>();
 
     vector<string> names;
@@ -49,46 +49,46 @@ any Interpreter::visitParamlist(ŘParser::ParamlistContext *ctx) {
     return names;
 }
 
-any Interpreter::visitVariableAssignment(ŘParser::VariableAssignmentContext *ctx) {
+any Interpreter::visitVariableAssignment(RRParser::VariableAssignmentContext *ctx) {
     auto varname = ctx->ID()->getText();
     auto value = visit(ctx->expr());
     state.variables[varname] = any_cast<int>(value);
     return {};
 }
 
-any Interpreter::visitFunctionDefinition(ŘParser::FunctionDefinitionContext *ctx) {
+any Interpreter::visitFunctionDefinition(RRParser::FunctionDefinitionContext *ctx) {
     auto funcname = ctx->ID()->getText();
     auto body = visitFunc(ctx->func());
     state.functions[funcname] = any_cast<Function>(body);
     return {};
 }
 
-any Interpreter::visitIfCondition(ŘParser::IfConditionContext *ctx) {
+any Interpreter::visitIfCondition(RRParser::IfConditionContext *ctx) {
     auto cond = any_cast<int>(visit(ctx->cond));
     if (cond) {
-        ŘBaseVisitor::visitBlock(ctx->body);
+        RRBaseVisitor::visitBlock(ctx->body);
     }
     return {};
 }
 
-any Interpreter::visitIfElseCondition(ŘParser::IfElseConditionContext *ctx) {
+any Interpreter::visitIfElseCondition(RRParser::IfElseConditionContext *ctx) {
     auto cond = any_cast<int>(visit(ctx->cond));
     if (cond) {
-        ŘBaseVisitor::visitBlock(ctx->truebody);
+        RRBaseVisitor::visitBlock(ctx->truebody);
     } else {
-        ŘBaseVisitor::visitBlock(ctx->falsebody);
+        RRBaseVisitor::visitBlock(ctx->falsebody);
     }
     return {};
 }
 
-any Interpreter::visitWhileLoop(ŘParser::WhileLoopContext *ctx) {
+any Interpreter::visitWhileLoop(RRParser::WhileLoopContext *ctx) {
     while(any_cast<int>(visit(ctx->cond))) {
-        ŘBaseVisitor::visitBlock(ctx->body);
+        RRBaseVisitor::visitBlock(ctx->body);
     }
     return {};
 }
 
-any Interpreter::visitVariableRead(ŘParser::VariableReadContext *ctx) {
+any Interpreter::visitVariableRead(RRParser::VariableReadContext *ctx) {
     auto varName = ctx->ID()->getText();
     if (state.variables.count(varName)) {
         return state.variables[varName];
@@ -97,7 +97,7 @@ any Interpreter::visitVariableRead(ŘParser::VariableReadContext *ctx) {
     }
 }
 
-any Interpreter::visitOpComparsion(ŘParser::OpComparsionContext *ctx) {
+any Interpreter::visitOpComparsion(RRParser::OpComparsionContext *ctx) {
     auto left = any_cast<int>(visit(ctx->left));
     auto right = any_cast<int>(visit(ctx->right));
     auto op = ctx->op->getText();
@@ -107,7 +107,7 @@ any Interpreter::visitOpComparsion(ŘParser::OpComparsionContext *ctx) {
     throw runtime_error("Unknown operator: " + op);
 }
 
-any Interpreter::visitFunctionCall(ŘParser::FunctionCallContext *ctx) {
+any Interpreter::visitFunctionCall(RRParser::FunctionCallContext *ctx) {
     auto funName = ctx->fun->getText();
 
     size_t targetArgSize;
@@ -137,7 +137,7 @@ any Interpreter::visitFunctionCall(ŘParser::FunctionCallContext *ctx) {
                 state.variables[param] = args[argId++];
             }
             // Call the function
-            ŘBaseVisitor::visitBlock(state.functions[funName].body);
+            RRBaseVisitor::visitBlock(state.functions[funName].body);
             // Save return value
             auto retVal = state.variables["result"];
             // Restore backup
@@ -159,7 +159,7 @@ any Interpreter::visitFunctionCall(ŘParser::FunctionCallContext *ctx) {
     return funcToCall(args);
 }
 
-any Interpreter::visitOpComputation(ŘParser::OpComputationContext *ctx) {
+any Interpreter::visitOpComputation(RRParser::OpComputationContext *ctx) {
     auto left = any_cast<int>(visit(ctx->left));
     auto right = any_cast<int>(visit(ctx->right));
     auto op = ctx->op->getText();
@@ -171,7 +171,7 @@ any Interpreter::visitOpComputation(ŘParser::OpComputationContext *ctx) {
     throw runtime_error("Unknown operator: " + op);
 }
 
-any Interpreter::visitOpUnary(ŘParser::OpUnaryContext *ctx) {
+any Interpreter::visitOpUnary(RRParser::OpUnaryContext *ctx) {
     auto expr = any_cast<int>(visit(ctx->e));
     auto op = ctx->op->getText();
     if (op == "!") return !expr;

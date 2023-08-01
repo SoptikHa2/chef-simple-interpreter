@@ -1,4 +1,4 @@
-grammar Ř;
+grammar RR;
 
 prog: stmtlist EOF
     ;

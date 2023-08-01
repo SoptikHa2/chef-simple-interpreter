@@ -1,5 +1,5 @@
 
-// Generated from Ř.g4 by ANTLR 4.12.0
+// Generated from RR.g4 by ANTLR 4.12.0
 
 #pragma once
 
@@ -9,7 +9,7 @@
 
 
 
-class  ŘParser : public antlr4::Parser {
+class  RRParser : public antlr4::Parser {
 public:
   enum {
     T__0 = 1, T__1 = 2, T__2 = 3, T__3 = 4, T__4 = 5, T__5 = 6, T__6 = 7, 
@@ -23,11 +23,11 @@ public:
     RuleArglist = 5, RuleFunc = 6, RuleParamlist = 7, RuleLiteral = 8
   };
 
-  explicit ŘParser(antlr4::TokenStream *input);
+  explicit RRParser(antlr4::TokenStream *input);
 
-  ŘParser(antlr4::TokenStream *input, const antlr4::atn::ParserATNSimulatorOptions &options);
+  RRParser(antlr4::TokenStream *input, const antlr4::atn::ParserATNSimulatorOptions &options);
 
-  ~ŘParser() override;
+  ~RRParser() override;
 
   std::string getGrammarFileName() const override;
 
@@ -119,9 +119,9 @@ public:
   public:
     IfElseConditionContext(StmtContext *ctx);
 
-    ŘParser::ExprContext *cond = nullptr;
-    ŘParser::BlockContext *truebody = nullptr;
-    ŘParser::BlockContext *falsebody = nullptr;
+    RRParser::ExprContext *cond = nullptr;
+    RRParser::BlockContext *truebody = nullptr;
+    RRParser::BlockContext *falsebody = nullptr;
     ExprContext *expr();
     std::vector<BlockContext *> block();
     BlockContext* block(size_t i);
@@ -153,8 +153,8 @@ public:
   public:
     IfConditionContext(StmtContext *ctx);
 
-    ŘParser::ExprContext *cond = nullptr;
-    ŘParser::BlockContext *body = nullptr;
+    RRParser::ExprContext *cond = nullptr;
+    RRParser::BlockContext *body = nullptr;
     ExprContext *expr();
     BlockContext *block();
 
@@ -165,8 +165,8 @@ public:
   public:
     WhileLoopContext(StmtContext *ctx);
 
-    ŘParser::ExprContext *cond = nullptr;
-    ŘParser::BlockContext *body = nullptr;
+    RRParser::ExprContext *cond = nullptr;
+    RRParser::BlockContext *body = nullptr;
     ExprContext *expr();
     BlockContext *block();
 
@@ -193,7 +193,7 @@ public:
     OpUnaryContext(ExprContext *ctx);
 
     antlr4::Token *op = nullptr;
-    ŘParser::ExprContext *e = nullptr;
+    RRParser::ExprContext *e = nullptr;
     ExprContext *expr();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -221,9 +221,9 @@ public:
   public:
     OpComparsionContext(ExprContext *ctx);
 
-    ŘParser::ExprContext *left = nullptr;
+    RRParser::ExprContext *left = nullptr;
     antlr4::Token *op = nullptr;
-    ŘParser::ExprContext *right = nullptr;
+    RRParser::ExprContext *right = nullptr;
     std::vector<ExprContext *> expr();
     ExprContext* expr(size_t i);
 
@@ -235,7 +235,7 @@ public:
     FunctionCallContext(ExprContext *ctx);
 
     antlr4::Token *fun = nullptr;
-    ŘParser::ArglistContext *args = nullptr;
+    RRParser::ArglistContext *args = nullptr;
     antlr4::tree::TerminalNode *ID();
     ArglistContext *arglist();
 
@@ -246,7 +246,7 @@ public:
   public:
     OpParensContext(ExprContext *ctx);
 
-    ŘParser::ExprContext *e = nullptr;
+    RRParser::ExprContext *e = nullptr;
     ExprContext *expr();
 
     virtual std::any accept(antlr4::tree::ParseTreeVisitor *visitor) override;
@@ -256,9 +256,9 @@ public:
   public:
     OpComputationContext(ExprContext *ctx);
 
-    ŘParser::ExprContext *left = nullptr;
+    RRParser::ExprContext *left = nullptr;
     antlr4::Token *op = nullptr;
-    ŘParser::ExprContext *right = nullptr;
+    RRParser::ExprContext *right = nullptr;
     std::vector<ExprContext *> expr();
     ExprContext* expr(size_t i);
 
@@ -284,7 +284,7 @@ public:
 
   class  FuncContext : public antlr4::ParserRuleContext {
   public:
-    ŘParser::ParamlistContext *params = nullptr;
+    RRParser::ParamlistContext *params = nullptr;
     FuncContext(antlr4::ParserRuleContext *parent, size_t invokingState);
     virtual size_t getRuleIndex() const override;
     BlockContext *block();

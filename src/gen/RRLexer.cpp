@@ -1,8 +1,8 @@
 
-// Generated from Ř.g4 by ANTLR 4.12.0
+// Generated from RR.g4 by ANTLR 4.12.0
 
 
-#include "ŘLexer.h"
+#include "RRLexer.h"
 
 
 using namespace antlr4;
@@ -13,8 +13,8 @@ using namespace antlr4;
 
 namespace {
 
-struct ŘLexerStaticData final {
-  ŘLexerStaticData(std::vector<std::string> ruleNames,
+struct RRLexerStaticData final {
+  RRLexerStaticData(std::vector<std::string> ruleNames,
                           std::vector<std::string> channelNames,
                           std::vector<std::string> modeNames,
                           std::vector<std::string> literalNames,
@@ -24,10 +24,10 @@ struct ŘLexerStaticData final {
         symbolicNames(std::move(symbolicNames)),
         vocabulary(this->literalNames, this->symbolicNames) {}
 
-  ŘLexerStaticData(const ŘLexerStaticData&) = delete;
-  ŘLexerStaticData(ŘLexerStaticData&&) = delete;
-  ŘLexerStaticData& operator=(const ŘLexerStaticData&) = delete;
-  ŘLexerStaticData& operator=(ŘLexerStaticData&&) = delete;
+  RRLexerStaticData(const RRLexerStaticData&) = delete;
+  RRLexerStaticData(RRLexerStaticData&&) = delete;
+  RRLexerStaticData& operator=(const RRLexerStaticData&) = delete;
+  RRLexerStaticData& operator=(RRLexerStaticData&&) = delete;
 
   std::vector<antlr4::dfa::DFA> decisionToDFA;
   antlr4::atn::PredictionContextCache sharedContextCache;
@@ -41,12 +41,12 @@ struct ŘLexerStaticData final {
   std::unique_ptr<antlr4::atn::ATN> atn;
 };
 
-::antlr4::internal::OnceFlag řlexerLexerOnceFlag;
-ŘLexerStaticData *řlexerLexerStaticData = nullptr;
+::antlr4::internal::OnceFlag rrlexerLexerOnceFlag;
+RRLexerStaticData *rrlexerLexerStaticData = nullptr;
 
-void řlexerLexerInitialize() {
-  assert(řlexerLexerStaticData == nullptr);
-  auto staticData = std::make_unique<ŘLexerStaticData>(
+void rrlexerLexerInitialize() {
+  assert(rrlexerLexerStaticData == nullptr);
+  auto staticData = std::make_unique<RRLexerStaticData>(
     std::vector<std::string>{
       "T__0", "T__1", "T__2", "T__3", "T__4", "T__5", "T__6", "T__7", "T__8", 
       "T__9", "T__10", "T__11", "T__12", "T__13", "T__14", "T__15", "T__16", 
@@ -116,51 +116,51 @@ void řlexerLexerInitialize() {
   for (size_t i = 0; i < count; i++) { 
     staticData->decisionToDFA.emplace_back(staticData->atn->getDecisionState(i), i);
   }
-  řlexerLexerStaticData = staticData.release();
+  rrlexerLexerStaticData = staticData.release();
 }
 
 }
 
-ŘLexer::ŘLexer(CharStream *input) : Lexer(input) {
-  ŘLexer::initialize();
-  _interpreter = new atn::LexerATNSimulator(this, *řlexerLexerStaticData->atn, řlexerLexerStaticData->decisionToDFA, řlexerLexerStaticData->sharedContextCache);
+RRLexer::RRLexer(CharStream *input) : Lexer(input) {
+  RRLexer::initialize();
+  _interpreter = new atn::LexerATNSimulator(this, *rrlexerLexerStaticData->atn, rrlexerLexerStaticData->decisionToDFA, rrlexerLexerStaticData->sharedContextCache);
 }
 
-ŘLexer::~ŘLexer() {
+RRLexer::~RRLexer() {
   delete _interpreter;
 }
 
-std::string ŘLexer::getGrammarFileName() const {
-  return "Ř.g4";
+std::string RRLexer::getGrammarFileName() const {
+  return "RR.g4";
 }
 
-const std::vector<std::string>& ŘLexer::getRuleNames() const {
-  return řlexerLexerStaticData->ruleNames;
+const std::vector<std::string>& RRLexer::getRuleNames() const {
+  return rrlexerLexerStaticData->ruleNames;
 }
 
-const std::vector<std::string>& ŘLexer::getChannelNames() const {
-  return řlexerLexerStaticData->channelNames;
+const std::vector<std::string>& RRLexer::getChannelNames() const {
+  return rrlexerLexerStaticData->channelNames;
 }
 
-const std::vector<std::string>& ŘLexer::getModeNames() const {
-  return řlexerLexerStaticData->modeNames;
+const std::vector<std::string>& RRLexer::getModeNames() const {
+  return rrlexerLexerStaticData->modeNames;
 }
 
-const dfa::Vocabulary& ŘLexer::getVocabulary() const {
-  return řlexerLexerStaticData->vocabulary;
+const dfa::Vocabulary& RRLexer::getVocabulary() const {
+  return rrlexerLexerStaticData->vocabulary;
 }
 
-antlr4::atn::SerializedATNView ŘLexer::getSerializedATN() const {
-  return řlexerLexerStaticData->serializedATN;
+antlr4::atn::SerializedATNView RRLexer::getSerializedATN() const {
+  return rrlexerLexerStaticData->serializedATN;
 }
 
-const atn::ATN& ŘLexer::getATN() const {
-  return *řlexerLexerStaticData->atn;
+const atn::ATN& RRLexer::getATN() const {
+  return *rrlexerLexerStaticData->atn;
 }
 
 
 
 
-void ŘLexer::initialize() {
-  ::antlr4::internal::call_once(řlexerLexerOnceFlag, řlexerLexerInitialize);
+void RRLexer::initialize() {
+  ::antlr4::internal::call_once(rrlexerLexerOnceFlag, rrlexerLexerInitialize);
 }

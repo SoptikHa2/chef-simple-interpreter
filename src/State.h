@@ -3,11 +3,11 @@
 #include <vector>
 #include <unordered_map>
 #include <string>
-#include "gen/ŘParser.h"
+#include "gen/RRParser.h"
 
 struct Function {
     std::vector<std::string> params = {};
-    ŘParser::BlockContext * body = nullptr;
+    RRParser::BlockContext * body = nullptr;
 };
 
 struct State {

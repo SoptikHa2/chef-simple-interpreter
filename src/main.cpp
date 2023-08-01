@@ -1,8 +1,8 @@
 #include <string>
 #include <iostream>
 
-#include "gen/ŘLexer.h"
-#include "gen/ŘParser.h"
+#include "gen/RRLexer.h"
+#include "gen/RRParser.h"
 
 #include "Interpreter.h"
 
@@ -20,16 +20,16 @@ int main(int argc, char ** argv) {
     antlr4::ANTLRInputStream stream (input_stream);
 
     // Give the input to the lexer.
-    ŘLexer lexer(&stream);
+    RRLexer lexer(&stream);
     // Generate the tokens.
     antlr4::CommonTokenStream tokens(&lexer);
 
     tokens.fill();
 
     // Create the translation that will parse the input.
-    ŘParser parser (&tokens);
+    RRParser parser (&tokens);
     parser.setBuildParseTree(true);
-    ŘParser::ProgContext *tree = parser.prog();
+    RRParser::ProgContext *tree = parser.prog();
 
     Interpreter interpreter;
     interpreter.visitProg(tree);
