@@ -1,10 +1,7 @@
-#pragma once
-
+#include "S2ETools.h"
 #include <cstring>
 
 namespace S2EInternals {
-
-#include "../s2e/s2e.h"
 
     enum S2E_CONCOLICSESSION_COMMANDS {
         START_CONCOLIC_SESSION,
@@ -38,33 +35,59 @@ namespace S2EInternals {
         //};
     } __attribute((packed));
 
+    enum S2E_EXAMPLECOMMS_COMMANDS {
+        COMMAND_1
+    };
+
+    struct S2E_EXAMPLECOMMS_COMMAND {
+        S2E_EXAMPLECOMMS_COMMANDS Command;
+        union {
+            uint64_t param;
+        };
+    };
 };
 
 void StartSymbex() {
+    s2e_message("Starting symbex");
+
     S2EInternals::S2E_CONCOLICSESSION_COMMAND cmd;
     cmd.Command = S2EInternals::S2E_CONCOLICSESSION_COMMANDS::START_CONCOLIC_SESSION;
     cmd.max_time = 300;
 
-    S2EInternals::s2e_invoke_plugin("ConcolicSession", &cmd, sizeof(cmd));
+    s2e_invoke_plugin("ConcolicSession", &cmd, sizeof(cmd));
 }
 
 void EndSymbex(bool hit_error) {
+    s2e_message("Ending symbex");
+
     S2EInternals::S2E_CONCOLICSESSION_COMMAND cmd;
     cmd.Command = S2EInternals::S2E_CONCOLICSESSION_COMMANDS::END_CONCOLIC_SESSION;
     cmd.is_error_path = hit_error;
 
-    S2EInternals::s2e_invoke_plugin("ConcolicSession", &cmd, sizeof(cmd));
+    s2e_invoke_plugin("ConcolicSession", &cmd, sizeof(cmd));
 }
 
-void UpdateHighLevelInstruction(uint32_t opcode, std::string filename, std::string functionName, uint32_t line, uint32_t frameCount, uint32_t frameFrom, uint32_t frameTo) {
+void UpdateHighLevelInstruction(uint32_t opcode, antlr4::ParserRuleContext * ctx) {
+    s2e_message("Updating HL trace");
+
     S2EInternals::S2E_INTERPRETERMONITOR_COMMAND cmd;
     cmd.op_code = opcode;
-    strncpy((char *)cmd.filename, filename.c_str(), 60);
-    strncpy((char *)cmd.function, functionName.c_str(), 60);
-    cmd.line = line;
-    cmd.frame_count = frameCount;
-    cmd.frames[0] = frameFrom;
-    cmd.frames[1] = frameTo;
+    strncpy((char *)cmd.filename, "<no support>", 60);
+    strncpy((char *)cmd.function, "<no support>", 60);
+    cmd.line = ctx->start->getLine();
+    cmd.frame_count = 0;
+    cmd.frames[0] = 0;
+    cmd.frames[1] = 0;
 
-    S2EInternals::s2e_invoke_plugin("InterpreterMonitor", &cmd, sizeof(cmd));
+    s2e_invoke_plugin("InterpreterMonitor", &cmd, sizeof(cmd));
+}
+
+void DebugMsg(std::string msg) {
+    s2e_message(msg.c_str());
+
+    S2EInternals::S2E_EXAMPLECOMMS_COMMAND cmd;
+    cmd.Command = S2EInternals::S2E_EXAMPLECOMMS_COMMANDS::COMMAND_1;
+    cmd.param = 42;
+
+    s2e_invoke_plugin("ExampleComms", &cmd, sizeof(cmd));
 }

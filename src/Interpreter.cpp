@@ -4,7 +4,7 @@
 
 #include "Interpreter.h"
 #include "RRstdlib.hpp"
-#include "S2ETools.hpp"
+#include "S2ETools.h"
 
 using namespace std;
 
@@ -61,6 +61,7 @@ any Interpreter::visitParamlist(RRParser::ParamlistContext *ctx) {
 }
 
 any Interpreter::visitVariableAssignment(RRParser::VariableAssignmentContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(VariableAssignment, ctx);
     auto varname = ctx->ID()->getText();
     auto value = visit(ctx->expr());
     state.variables[varname] = any_cast<int>(value);
@@ -68,6 +69,7 @@ any Interpreter::visitVariableAssignment(RRParser::VariableAssignmentContext *ct
 }
 
 any Interpreter::visitFunctionDefinition(RRParser::FunctionDefinitionContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(FunctionAssignment, ctx);
     auto funcname = ctx->ID()->getText();
     auto body = visitFunc(ctx->func());
     state.functions[funcname] = any_cast<Function>(body);
@@ -75,6 +77,7 @@ any Interpreter::visitFunctionDefinition(RRParser::FunctionDefinitionContext *ct
 }
 
 any Interpreter::visitIfCondition(RRParser::IfConditionContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(Condition, ctx);
     auto cond = any_cast<int>(visit(ctx->cond));
     if (cond) {
         RRBaseVisitor::visitBlock(ctx->body);
@@ -83,6 +86,7 @@ any Interpreter::visitIfCondition(RRParser::IfConditionContext *ctx) {
 }
 
 any Interpreter::visitIfElseCondition(RRParser::IfElseConditionContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(Condition, ctx);
     auto cond = any_cast<int>(visit(ctx->cond));
     if (cond) {
         RRBaseVisitor::visitBlock(ctx->truebody);
@@ -93,6 +97,7 @@ any Interpreter::visitIfElseCondition(RRParser::IfElseConditionContext *ctx) {
 }
 
 any Interpreter::visitWhileLoop(RRParser::WhileLoopContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(WhileLoop, ctx);
     while(any_cast<int>(visit(ctx->cond))) {
         RRBaseVisitor::visitBlock(ctx->body);
     }
@@ -100,6 +105,8 @@ any Interpreter::visitWhileLoop(RRParser::WhileLoopContext *ctx) {
 }
 
 any Interpreter::visitVariableRead(RRParser::VariableReadContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(VariableRead, ctx);
+
     auto varName = ctx->ID()->getText();
     if (state.variables.count(varName)) {
         return state.variables[varName];
@@ -110,6 +117,8 @@ any Interpreter::visitVariableRead(RRParser::VariableReadContext *ctx) {
 }
 
 any Interpreter::visitOpComparsion(RRParser::OpComparsionContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(Comparsion, ctx);
+
     auto left = any_cast<int>(visit(ctx->left));
     auto right = any_cast<int>(visit(ctx->right));
     auto op = ctx->op->getText();
@@ -122,6 +131,8 @@ any Interpreter::visitOpComparsion(RRParser::OpComparsionContext *ctx) {
 }
 
 any Interpreter::visitFunctionCall(RRParser::FunctionCallContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(FuncCall, ctx);
+
     auto funName = ctx->fun->getText();
 
     size_t targetArgSize;
@@ -176,6 +187,8 @@ any Interpreter::visitFunctionCall(RRParser::FunctionCallContext *ctx) {
 }
 
 any Interpreter::visitOpComputation(RRParser::OpComputationContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(Arithmetics, ctx);
+
     auto left = any_cast<int>(visit(ctx->left));
     auto right = any_cast<int>(visit(ctx->right));
     auto op = ctx->op->getText();
@@ -193,6 +206,8 @@ any Interpreter::visitOpComputation(RRParser::OpComputationContext *ctx) {
 }
 
 any Interpreter::visitOpUnary(RRParser::OpUnaryContext *ctx) {
+    if (symbexec_enabled) UpdateHighLevelInstruction(UnaryArithmetics, ctx);
+
     auto expr = any_cast<int>(visit(ctx->e));
     auto op = ctx->op->getText();
     if (op == "!") return !expr;

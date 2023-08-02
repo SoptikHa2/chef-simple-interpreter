@@ -7,10 +7,13 @@
 #include "gen/RRParser.h"
 
 #include "Interpreter.h"
+#include "S2ETools.h"
 
 using namespace std;
 
 int main(int argc, char ** argv) {
+    DebugMsg();
+
     if (argc != 2) {
         cout << "Usage: ./chef_simple_interpreter <file>" << endl;
         return 1;

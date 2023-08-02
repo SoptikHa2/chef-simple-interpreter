@@ -4,6 +4,18 @@
 #include "gen/RRBaseVisitor.h"
 #include "State.h"
 
+enum Instructions {
+    VariableAssignment,
+    FunctionAssignment,
+    Condition,
+    WhileLoop,
+    VariableRead,
+    Comparsion,
+    FuncCall,
+    Arithmetics,
+    UnaryArithmetics,
+};
+
 class Interpreter : public RRBaseVisitor {
     State state;
     bool symbexec_enabled;
