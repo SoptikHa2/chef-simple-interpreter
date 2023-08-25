@@ -4,6 +4,8 @@
 #include <functional>
 #include <unordered_map>
 
+#include "S2ETools.h"
+
 namespace rrstd {
     void printChar(int expr) {
         unsigned char c = (unsigned char)expr;
@@ -32,6 +34,14 @@ namespace rrstd {
         return (int)c;
     }
 
+    int getSymbolicInt(std::string name) {
+        int i;
+
+        SymbolicVar(name, &i, sizeof(i));
+
+        return i;
+    }
+
     std::unordered_map<std::string, std::function<void(int)>> _vifunc = {
             {"printChar", printChar},
             {"print", print},
@@ -40,5 +50,8 @@ namespace rrstd {
     std::unordered_map<std::string, std::function<int(void)>> _ivfunc = {
             {"readNum", readNum},
             {"readChar", readChar},
+    };
+    std::unordered_map<std::string, std::function<int(std::string)>> _isfunc = {
+            {"getSymbolicInt", getSymbolicInt}
     };
 }

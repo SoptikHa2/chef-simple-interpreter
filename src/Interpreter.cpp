@@ -63,7 +63,9 @@ any Interpreter::visitParamlist(RRParser::ParamlistContext *ctx) {
 any Interpreter::visitVariableAssignment(RRParser::VariableAssignmentContext *ctx) {
     if (symbexec_enabled) UpdateHighLevelInstruction(VariableAssignment, ctx);
     auto varname = ctx->ID()->getText();
+    state.runtime_details.currently_defining_variable_name = { varname };
     auto value = visit(ctx->expr());
+    state.runtime_details.currently_defining_variable_name = { };
     state.variables[varname] = any_cast<int>(value);
     return {};
 }
@@ -149,6 +151,12 @@ any Interpreter::visitFunctionCall(RRParser::FunctionCallContext *ctx) {
         targetArgSize = 0;
         funcToCall = [&](auto _) {
             return rrstd::_ivfunc[funName]();
+        };
+    } else if (rrstd::_isfunc.count(funName) && funName == "getSymbolicInt") {
+        targetArgSize = 0;
+        std::string variable = *state.runtime_details.currently_defining_variable_name;
+        funcToCall = [&](auto _) {
+            return rrstd::_isfunc[funName](variable);
         };
     } else if (state.functions.count(funName)) {
         auto function = state.functions[funName];

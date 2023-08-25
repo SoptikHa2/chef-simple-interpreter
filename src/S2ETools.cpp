@@ -91,3 +91,9 @@ void DebugMsg(std::string msg) {
 
     s2e_invoke_plugin("ExampleComms", &cmd, sizeof(cmd));
 }
+
+void SymbolicVar(std::string variableName, void * buffer, int bufferSize) {
+    s2e_message("Creating new variable");
+
+    s2e_make_symbolic(buffer, bufferSize, variableName.c_str());
+}

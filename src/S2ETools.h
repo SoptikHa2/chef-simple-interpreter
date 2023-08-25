@@ -13,3 +13,5 @@ void EndSymbex(bool hit_error);
 void UpdateHighLevelInstruction(uint32_t opcode, antlr4::ParserRuleContext * ctx);
 
 void DebugMsg(std::string msg = "Debug message");
+
+void SymbolicVar(std::string variableName, void * buffer, int bufferSize);
